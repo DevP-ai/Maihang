@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface MealApi {
 
-    @GET("/random.php")
-    suspend fun getRandomMeal():Call<MealList>
+    @GET("random.php")
+    fun getRandomMeal():Call<MealList>
 }

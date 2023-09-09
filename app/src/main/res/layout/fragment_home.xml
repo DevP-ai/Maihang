@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:text="Text yet not decided"
+                android:text="Today's Special"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp"
                 android:textStyle="bold"
@@ -74,6 +74,7 @@
                     android:id="@+id/randomMealImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
                     android:background="@color/red" />
 
             </androidx.cardview.widget.CardView>
@@ -85,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Popular items"
+                android:text="Popular Dishes"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp"
                 android:textStyle="bold"
