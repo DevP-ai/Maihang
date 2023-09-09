@@ -1,9 +1,10 @@
-package com.example.maihang
+package com.example.maihang.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.example.maihang.R
 import com.example.maihang.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         //Setup Navigation
         val bottomNavigation=binding.bottomNavigation
-        val navController=Navigation.findNavController(this,R.id.hostFragment)
+        val navController=Navigation.findNavController(this, R.id.hostFragment)
         NavigationUI.setupWithNavController(bottomNavigation,navController)
 
     }
