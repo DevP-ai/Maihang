@@ -1,5 +1,6 @@
 package com.example.maihang.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.example.maihang.api.RetrofitApiInstance
 import com.example.maihang.databinding.FragmentHomeBinding
 import com.example.maihang.model.Meal
 import com.example.maihang.model.MealList
+import com.example.maihang.ui.MealActivity
 import com.example.maihang.viewModel.HomeViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,6 +24,12 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
    private lateinit var binding: FragmentHomeBinding
    private lateinit var homeViewModel: HomeViewModel
+   private lateinit var randomMeal:Meal
+   companion object{
+       const val MEAL_ID = "com.example.maihang.fragments.idMeal"
+       const val MEAL_NAME = "com.example.maihang.fragments.nameMeal"
+       const val MEAL_IMAGE = "com.example.maihang.fragments.imageMeal"
+   }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -60,7 +68,18 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getRandomMeal()
         randomMealObserver()
+        onRandomMealClick()
 
+    }
+
+    private fun onRandomMealClick() {
+        binding.randomMealCard.setOnClickListener {
+            val intent=Intent(activity,MealActivity::class.java)
+            intent.putExtra(MEAL_ID,randomMeal.idMeal)
+            intent.putExtra(MEAL_NAME,randomMeal.strMeal)
+            intent.putExtra(MEAL_IMAGE,randomMeal.strMealThumb)
+            startActivity(intent)
+        }
     }
 
     private fun randomMealObserver() {
@@ -69,6 +88,8 @@ class HomeFragment : Fragment() {
             Glide.with(this)
                 .load(value.strMealThumb)
                 .into(binding.randomMealImage)
+
+            this.randomMeal = value
         }
     }
 
