@@ -74,8 +74,8 @@
                     android:id="@+id/randomMealImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:background="@color/red" />
+                    android:background="@color/red"
+                    android:scaleType="centerCrop" />
 
             </androidx.cardview.widget.CardView>
 
@@ -96,7 +96,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/pItemRecycler"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_90sdp"
+                android:layout_height="@dimen/_95sdp"
                 android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"

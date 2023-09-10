@@ -10,9 +10,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.maihang.adapter.PopularMealAdapter
 import com.example.maihang.api.RetrofitApiInstance
 import com.example.maihang.databinding.FragmentHomeBinding
+import com.example.maihang.model.CategoryMeals
 import com.example.maihang.model.Meal
 import com.example.maihang.model.MealList
 import com.example.maihang.ui.MealActivity
@@ -25,6 +28,7 @@ class HomeFragment : Fragment() {
    private lateinit var binding: FragmentHomeBinding
    private lateinit var homeViewModel: HomeViewModel
    private lateinit var randomMeal:Meal
+   private lateinit var popularMealAdapter: PopularMealAdapter
    companion object{
        const val MEAL_ID = "com.example.maihang.fragments.idMeal"
        const val MEAL_NAME = "com.example.maihang.fragments.nameMeal"
@@ -34,6 +38,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         homeViewModel=ViewModelProvider(this)[HomeViewModel::class.java]
+        popularMealAdapter= PopularMealAdapter()
 
     }
 
@@ -66,10 +71,28 @@ class HomeFragment : Fragment() {
 //
 //        })
 
+        popularMealRecyclerView()
+
         homeViewModel.getRandomMeal()
         randomMealObserver()
         onRandomMealClick()
 
+        homeViewModel.getPopularMeal()
+        popularMealObserver()
+
+    }
+
+    private fun popularMealRecyclerView() {
+        binding.pItemRecycler.apply {
+            layoutManager=LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+            adapter=popularMealAdapter
+        }
+    }
+
+    private fun popularMealObserver() {
+        homeViewModel.observePopularMealLiveData().observe(viewLifecycleOwner){
+          popularMealAdapter.setMeal(it as ArrayList<CategoryMeals>)
+        }
     }
 
     private fun onRandomMealClick() {
