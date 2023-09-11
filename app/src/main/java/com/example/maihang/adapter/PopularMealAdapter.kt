@@ -9,7 +9,7 @@ import com.example.maihang.model.CategoryMeals
 import com.example.maihang.model.MealList
 
 class PopularMealAdapter():RecyclerView.Adapter<PopularMealAdapter.PopularMealViewHolder>() {
-
+   lateinit var popularMealClick:((CategoryMeals)->Unit)
     private var mealList=ArrayList<CategoryMeals>()
 
     fun setMeal(mealList:ArrayList<CategoryMeals>){
@@ -33,5 +33,9 @@ class PopularMealAdapter():RecyclerView.Adapter<PopularMealAdapter.PopularMealVi
        Glide.with(holder.itemView)
            .load(mealList[position].strMealThumb)
            .into(holder.binding.popularImage)
+
+        holder.itemView.setOnClickListener {
+            popularMealClick.invoke(mealList[position])
+        }
     }
 }
