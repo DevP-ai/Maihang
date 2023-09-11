@@ -1,6 +1,7 @@
 package com.example.maihang.api
 
 import com.example.maihang.model.CategoryList
+import com.example.maihang.model.MealsByCategoryList
 import com.example.maihang.model.MealList
 import retrofit2.Call
 import retrofit2.http.GET
@@ -15,6 +16,9 @@ interface MealApi {
     fun getMealById(@Query("i")id:String):Call<MealList>
 
     @GET("filter.php?")
-    fun getPopularMeal(@Query("c")categoryName:String):Call<CategoryList>
+    fun getPopularMeal(@Query("c")categoryName:String):Call<MealsByCategoryList>
+
+    @GET("categories.php")
+    fun getCategories():Call<CategoryList>
 
 }
