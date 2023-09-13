@@ -125,10 +125,20 @@
 
     <ImageView
         android:id="@+id/imgYoutube"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_gravity="bottom|center"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_gravity="center_vertical|bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/_60sdp"
         android:src="@drawable/youtube"/>
+    <Button
+        android:id="@+id/btnBuy"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:text="Buy Now"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        android:fontFamily="@font/boldfont"
+        android:layout_gravity="bottom|center"/>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/lineProgressBar"

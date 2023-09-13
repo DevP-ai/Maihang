@@ -11,7 +11,6 @@ import com.example.maihang.model.Category
 import com.example.maihang.model.CategoryList
 
 class CategoryMealAdapter:RecyclerView.Adapter<CategoryMealAdapter.CategoryMealViewHolder>() {
-//    lateinit var onCategoryMealClick:((Category)->Unit)
     private var categoryList=ArrayList<Category>()
 
     fun setCategories(categoryList:List<Category>){
@@ -38,9 +37,6 @@ class CategoryMealAdapter:RecyclerView.Adapter<CategoryMealAdapter.CategoryMealV
             .load(categoryList[position].strCategoryThumb)
             .into(holder.binding.mealCategoryImage)
 
-//
-//        holder.itemView.setOnClickListener {
-//            onCategoryMealClick.invoke(categoryList[position])
-//        }
+
     }
 }

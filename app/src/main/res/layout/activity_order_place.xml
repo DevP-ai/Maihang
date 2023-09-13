@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.OrderPlaceActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/purple"
+        android:layout_height="@dimen/_100sdp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapsedTitleTextColor="@color/white"
+            app:contentScrim="@color/purple"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:title="Meal Name">
+
+            <ImageView
+                android:id="@+id/imgProduct"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"/>
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_collapseMode="pin"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <TextView
+               android:id="@+id/productName"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Product Name"
+               android:padding="@dimen/_10sdp"
+               android:textColor="@color/black"
+               android:fontFamily="@font/boldfont"
+               android:textSize="@dimen/_16ssp"
+               android:textStyle="bold"
+               android:layout_marginTop="@dimen/_15sdp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintBottom_toTopOf="@id/idLinearLayout"/>
+
+           <LinearLayout
+               android:id="@+id/idLinearLayout"
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:layout_constraintTop_toBottomOf="@id/productName">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Product ID: "
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:textSize="@dimen/_16ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+               <TextView
+                   android:id="@+id/productId"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="ID2394"
+                   android:textColor="@color/red"
+                   android:textStyle="bold"
+                   android:textSize="@dimen/_16ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/priceLinearLayout"
+               android:orientation="horizontal"
+               android:layout_marginTop="@dimen/_10sdp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:layout_constraintTop_toBottomOf="@id/idLinearLayout">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Price: "
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="299"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="rupees"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/chargeLinearLayout"
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:layout_constraintTop_toBottomOf="@id/priceLinearLayout">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Delivery Charge:"
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="30"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="rupees"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+
+           </LinearLayout>
+
+           <TextView
+               android:id="@+id/line"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="-------------------------------------------------------"
+               android:textColor="@color/black"
+               android:textSize="@dimen/_10sdp"
+               android:layout_marginStart="@dimen/_10sdp"
+               app:layout_constraintTop_toBottomOf="@id/chargeLinearLayout"/>
+
+
+
+           <LinearLayout
+               android:id="@+id/totalLinearLayout"
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:layout_constraintTop_toBottomOf="@id/line">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Toatl Charge:"
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+               <TextView
+                   android:id="@+id/totalAmount"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="329"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="rupees"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_15ssp"
+                   android:layout_marginStart="@dimen/_10sdp"
+                   android:textAllCaps="false"/>
+
+
+           </LinearLayout>
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+   </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:text="Pay"
+        android:textSize="@dimen/_16ssp"
+        android:layout_gravity="bottom|center"/>
+
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/lineProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:indicatorColor="@color/red"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="bottom"
+        android:visibility="gone"/>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -39,6 +39,14 @@ class MealActivity : AppCompatActivity() {
         observeLiveMealData()
 
         onYoutubeImageClick()
+
+        binding.btnBuy.setOnClickListener {
+            val intent=Intent(this,OrderPlaceActivity::class.java)
+            intent.putExtra("ID",mealId)
+            intent.putExtra("NAME",mealName)
+            intent.putExtra("IMAGE",mealImage)
+            startActivity(intent)
+        }
     }
 
     private fun onYoutubeImageClick() {
