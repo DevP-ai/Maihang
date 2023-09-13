@@ -10,7 +10,7 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:backgroundTint="@color/purple"
-        android:layout_height="@dimen/_100sdp">
+        android:layout_height="@dimen/_150sdp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolBar"
@@ -53,6 +53,7 @@
                android:layout_height="wrap_content"
                android:hint="Product Name"
                android:padding="@dimen/_10sdp"
+               android:gravity="center"
                android:textColor="@color/black"
                android:fontFamily="@font/boldfont"
                android:textSize="@dimen/_16ssp"
