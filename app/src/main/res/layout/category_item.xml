@@ -9,7 +9,7 @@
         android:id="@+id/mealCategoryImage"
         android:layout_width="@dimen/_85sdp"
         android:layout_height="@dimen/_85sdp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

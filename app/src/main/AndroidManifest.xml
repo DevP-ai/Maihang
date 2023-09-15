@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.CategoryMealActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.OrderPlaceActivity"
             android:exported="false" />
         <activity
@@ -31,13 +34,12 @@
             </intent-filter>
         </activity>
 
-
-        <meta-data android:name="com.razorpay.ApiKey"
-            android:value=""/>
-
-        <meta-data android:name="com.google.gms.wallet.api.enable"
-            android:value="true"/>
-
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="" />
+        <meta-data
+            android:name="com.google.gms.wallet.api.enable"
+            android:value="true" />
     </application>
 
 </manifest>
