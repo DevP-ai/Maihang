@@ -17,6 +17,7 @@ import com.example.maihang.databinding.FragmentHomeBinding
 import com.example.maihang.model.Category
 import com.example.maihang.model.MealsByCategory
 import com.example.maihang.model.Meal
+import com.example.maihang.ui.CategoryMealActivity
 import com.example.maihang.ui.MealActivity
 import com.example.maihang.viewModel.HomeViewModel
 
@@ -30,6 +31,7 @@ class HomeFragment : Fragment() {
        const val MEAL_ID = "com.example.maihang.fragments.idMeal"
        const val MEAL_NAME = "com.example.maihang.fragments.nameMeal"
        const val MEAL_IMAGE = "com.example.maihang.fragments.imageMeal"
+       const val CATEGORY_NAME="com.example.maihang.fragments.categoryName"
    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,8 +87,17 @@ class HomeFragment : Fragment() {
         homeViewModel.getCategories()
         observeCategoryLivaData()
 
+        onCategoryClick()
 
 
+    }
+
+    private fun onCategoryClick() {
+        categoriesAdapter.onItemClick={category ->
+            val intent=Intent(activity,CategoryMealActivity::class.java)
+            intent.putExtra(CATEGORY_NAME,category.strCategory)
+            startActivity(intent)
+        }
     }
 
     private fun categoriesRecyclerView() {

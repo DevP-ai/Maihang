@@ -12,6 +12,7 @@ import com.example.maihang.model.CategoryList
 
 class CategoryMealAdapter:RecyclerView.Adapter<CategoryMealAdapter.CategoryMealViewHolder>() {
     private var categoryList=ArrayList<Category>()
+    var onItemClick: ((Category) -> Unit?)? =null
 
     fun setCategories(categoryList:List<Category>){
         this.categoryList=categoryList as ArrayList<Category>
@@ -37,6 +38,8 @@ class CategoryMealAdapter:RecyclerView.Adapter<CategoryMealAdapter.CategoryMealV
             .load(categoryList[position].strCategoryThumb)
             .into(holder.binding.mealCategoryImage)
 
-
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(categoryList[position])
+        }
     }
 }
