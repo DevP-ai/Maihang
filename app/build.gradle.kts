@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -34,6 +35,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    //Manually add to support java 1.7.20
+    configurations.all {
+        resolutionStrategy {
+            force("org.jetbrains.kotlin:kotlin-stdlib:1.7.20")
+        }
     }
 }
 
@@ -76,5 +83,14 @@ dependencies {
 
     //Razopay
     implementation ("com.razorpay:checkout:1.6.33")
+
+    //Room
+    val room_version = "2.5.2"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
 
 }
