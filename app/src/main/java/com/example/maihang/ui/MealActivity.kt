@@ -5,14 +5,18 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.maihang.R
 import com.example.maihang.databinding.ActivityMealBinding
+import com.example.maihang.db.MealDatabase
 import com.example.maihang.fragments.HomeFragment
+import com.example.maihang.model.Meal
 import com.example.maihang.viewModel.MealActivityViewModel
+import com.example.maihang.viewModel.MealViewModelFactory
 
 class MealActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMealBinding
@@ -21,6 +25,8 @@ class MealActivity : AppCompatActivity() {
     private lateinit var mealImage:String
     private lateinit var mealMvvm:MealActivityViewModel
     private lateinit var youtubeLink:String
+//    private lateinit var mealDatabase: MealDatabase
+//    private  var saveMeal:Meal?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +36,12 @@ class MealActivity : AppCompatActivity() {
         binding.collapsingToolBar.setExpandedTitleColor(ContextCompat.getColor(this,R.color.meal))
         binding.collapsingToolBar.setExpandedTitleTextAppearance(R.style.ExpandedTitleText)
 
-        mealMvvm=ViewModelProvider(this)[MealActivityViewModel::class.java]
+//        mealMvvm=ViewModelProvider(this)[MealActivityViewModel::class.java]
+
+        val mealDatabase=MealDatabase.getInstance(this)
+        val mealModelFactory=MealViewModelFactory(mealDatabase)
+        mealMvvm=ViewModelProvider(this,mealModelFactory)[MealActivityViewModel::class.java]
+
         loadCase()
         getInformationFromIntent()
         setInformationInView()
@@ -39,6 +50,7 @@ class MealActivity : AppCompatActivity() {
         observeLiveMealData()
 
         onYoutubeImageClick()
+        onFavouriteClick()
 
         binding.btnBuy.setOnClickListener {
             val intent=Intent(this,OrderPlaceActivity::class.java)
@@ -46,6 +58,16 @@ class MealActivity : AppCompatActivity() {
             intent.putExtra("NAME",mealName)
             intent.putExtra("IMAGE",mealImage)
             startActivity(intent)
+        }
+
+    }
+
+    private fun onFavouriteClick() {
+        binding.btnFloat.setOnClickListener {
+            saveMeal?.let {
+                mealMvvm.updateMeal(it)
+                Toast.makeText(this,"Save in fav",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -56,9 +78,11 @@ class MealActivity : AppCompatActivity() {
         }
     }
 
+    private var saveMeal:Meal?=null
     private fun observeLiveMealData() {
         mealMvvm.observeMealDetails().observe(this, Observer {
             responseCase()
+            saveMeal=it
             binding.mealCat.text="Category: ${it.strCategory}"
             binding.txtArea.text="Area: ${it.strArea}"
             binding.mealDescription.text=it.strInstructions

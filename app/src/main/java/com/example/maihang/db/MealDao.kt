@@ -11,15 +11,11 @@ import com.example.maihang.model.Meal
 @Dao
 interface MealDao {
 
-    /*
-     onConflict = OnConflictStrategy.REPLACE  is for updating the data if same data present in
-    database then older one will replaced by new one
-    */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateMeal(meal: Meal)
 
     @Delete
-    suspend fun deleteMeal(meal: Meal)
+    suspend fun deleteMela(meal: Meal)
 
     @Query("SELECT * FROM mealInformation")
     fun getAllMeal():LiveData<List<Meal>>

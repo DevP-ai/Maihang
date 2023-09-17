@@ -36,7 +36,7 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="" />
+            android:value=""/>
         <meta-data
             android:name="com.google.gms.wallet.api.enable"
             android:value="true" />

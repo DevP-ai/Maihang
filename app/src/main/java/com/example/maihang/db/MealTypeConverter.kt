@@ -10,10 +10,11 @@ class MealTypeConverter {
     fun anyToString(attribute:Any?):String{
         if(attribute==null)
             return ""
-        return attribute as String  //or we can write `return attribute.toString`
+        return attribute as String
     }
 
-    fun stringToAny(attribute:String?):Any{
+    @TypeConverter
+    fun stringToAny(attribute:String?): Any {
         if(attribute==null)
             return ""
         return attribute
