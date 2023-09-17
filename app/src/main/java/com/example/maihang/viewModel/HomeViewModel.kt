@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.maihang.api.RetrofitApiInstance
+import com.example.maihang.db.MealDatabase
 import com.example.maihang.model.Category
 import com.example.maihang.model.CategoryList
 import com.example.maihang.model.MealsByCategoryList
@@ -14,10 +15,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel:ViewModel() {
+class HomeViewModel(private val mealDatabase: MealDatabase):ViewModel() {
     private var randomMealLiveData=MutableLiveData<Meal>()
     private var popularMealLiveData=MutableLiveData<List<MealsByCategory>>()
     private var mealCategoryLiveData=MutableLiveData<List<Category>>()
+    private var favMealLiveData=mealDatabase.mealDao().getAllMeal()
     fun getRandomMeal(){
         RetrofitApiInstance.getApi().getRandomMeal().enqueue(object : Callback<MealList> {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
@@ -85,5 +87,9 @@ class HomeViewModel:ViewModel() {
 
     fun observeMealCategoriesLiveData(): LiveData<List<Category>>{
         return mealCategoryLiveData
+    }
+
+    fun observerFavMealLiveData():LiveData<List<Meal>>{
+        return favMealLiveData
     }
 }
