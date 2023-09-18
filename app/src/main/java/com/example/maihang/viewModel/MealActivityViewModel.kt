@@ -49,9 +49,5 @@ class MealActivityViewModel(private val mealDatabase: MealDatabase):ViewModel() 
         }
     }
 
-    fun deleteMeal(meal: Meal){
-        viewModelScope.launch {
-            mealDatabase.mealDao().updateMeal(meal)
-        }
-    }
+
 }
