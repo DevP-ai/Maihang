@@ -11,7 +11,6 @@
         android:id="@+id/tvCountCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="120"
         android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
         android:fontFamily="@font/boldfont"
