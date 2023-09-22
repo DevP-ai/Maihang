@@ -1,5 +1,6 @@
 package com.example.maihang.api
 
+import android.icu.text.StringSearch
 import com.example.maihang.model.CategoryList
 import com.example.maihang.model.MealsByCategoryList
 import com.example.maihang.model.MealList
@@ -24,5 +25,8 @@ interface MealApi {
 
     @GET("filter.php")
     fun getMealByCategory(@Query("c")categoryName: String):Call<MealsByCategoryList>
+
+    @GET("search.php")
+    fun searchMeals(@Query("s")searchQuery: String):Call<MealList>
 
 }

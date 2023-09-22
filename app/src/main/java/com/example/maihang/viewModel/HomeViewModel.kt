@@ -22,6 +22,7 @@ class HomeViewModel(private val mealDatabase: MealDatabase):ViewModel() {
     private var popularMealLiveData=MutableLiveData<List<MealsByCategory>>()
     private var mealCategoryLiveData=MutableLiveData<List<Category>>()
     private var favMealLiveData=mealDatabase.mealDao().getAllMeal()
+    private var searchMealLiveData=MutableLiveData<List<Meal>>()
     fun getRandomMeal(){
         RetrofitApiInstance.getApi().getRandomMeal().enqueue(object : Callback<MealList> {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
@@ -79,6 +80,20 @@ class HomeViewModel(private val mealDatabase: MealDatabase):ViewModel() {
         })
     }
 
+    fun searchMeal(searchQuery:String)=RetrofitApiInstance.getApi().searchMeals(searchQuery).enqueue(object :Callback<MealList>{
+        override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
+            val mealList=response.body()?.meals
+            mealList?.let {
+                searchMealLiveData.postValue(it)
+            }
+        }
+
+        override fun onFailure(call: Call<MealList>, t: Throwable) {
+
+        }
+
+    })
+
     fun observeRandomMealLiveData():LiveData<Meal>{
         return randomMealLiveData
     }
@@ -104,5 +119,9 @@ class HomeViewModel(private val mealDatabase: MealDatabase):ViewModel() {
         viewModelScope.launch {
             mealDatabase.mealDao().updateMeal(meal)
         }
+    }
+
+    fun searchMealObserve():LiveData<List<Meal>>{
+        return searchMealLiveData
     }
 }

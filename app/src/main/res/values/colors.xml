@@ -5,4 +5,7 @@
     <color name="red">#FA0303</color>
     <color name="purple">#6B578C</color>
     <color name="meal">#FF3D00</color>
+
+    <color name="bg">#CDCDCD</color>
+
 </resources>
