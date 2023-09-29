@@ -39,10 +39,6 @@ class MealActivityViewModel(private val mealDatabase: MealDatabase):ViewModel() 
         return mealDetailsLiveData
     }
 
-//    suspend fun updateMeal(meal: Meal){
-//        mealDatabase.mealDao().updateMeal(meal)
-//    }
-
     fun updateMeal(meal: Meal){
         viewModelScope.launch {
             mealDatabase.mealDao().updateMeal(meal)

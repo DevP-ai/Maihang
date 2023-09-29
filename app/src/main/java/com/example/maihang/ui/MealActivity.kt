@@ -25,8 +25,7 @@ class MealActivity : AppCompatActivity() {
     private lateinit var mealImage:String
     private lateinit var mealMvvm:MealActivityViewModel
     private lateinit var youtubeLink:String
-//    private lateinit var mealDatabase: MealDatabase
-//    private  var saveMeal:Meal?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +35,8 @@ class MealActivity : AppCompatActivity() {
         binding.collapsingToolBar.setExpandedTitleColor(ContextCompat.getColor(this,R.color.meal))
         binding.collapsingToolBar.setExpandedTitleTextAppearance(R.style.ExpandedTitleText)
 
-//        mealMvvm=ViewModelProvider(this)[MealActivityViewModel::class.java]
+
+
 
         val mealDatabase=MealDatabase.getInstance(this)
         val mealModelFactory=MealViewModelFactory(mealDatabase)
@@ -52,21 +52,20 @@ class MealActivity : AppCompatActivity() {
         onYoutubeImageClick()
         onFavouriteClick()
 
-        binding.btnBuy.setOnClickListener {
-            val intent=Intent(this,OrderPlaceActivity::class.java)
-            intent.putExtra("ID",mealId)
-            intent.putExtra("NAME",mealName)
-            intent.putExtra("IMAGE",mealImage)
-            startActivity(intent)
-        }
-
+       binding.btnBuy.setOnClickListener {
+           val intent=Intent(this,OrderPlaceActivity::class.java)
+           intent.putExtra("id",mealId)
+           intent.putExtra("name",mealName)
+           intent.putExtra("image",mealImage)
+           startActivity(intent)
+       }
     }
 
     private fun onFavouriteClick() {
         binding.btnFloat.setOnClickListener {
             saveMeal?.let {
                 mealMvvm.updateMeal(it)
-                Toast.makeText(this,"Save in fav",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Save in favourite",Toast.LENGTH_SHORT).show()
             }
         }
     }

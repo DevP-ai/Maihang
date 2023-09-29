@@ -1,5 +1,6 @@
 package com.example.maihang.ui
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.voice.VoiceInteractionSession.VisibleActivityCallback
@@ -19,33 +20,37 @@ import java.lang.Exception
 import kotlin.math.roundToInt
 
 class OrderPlaceActivity : AppCompatActivity(),PaymentResultListener{
-    private lateinit var mealMvvm: MealActivityViewModel
     private lateinit var binding:ActivityOrderPlaceBinding
-    private lateinit var id:String
-    private lateinit var name:String
-    private lateinit var image:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityOrderPlaceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        getSetDetailsFromIntent()
+
         binding.collapsingToolBar.setExpandedTitleColor(ContextCompat.getColor(this,R.color.meal))
         binding.collapsingToolBar.setExpandedTitleTextAppearance(R.style.ExpandedTitleText)
-
-
-        mealMvvm= ViewModelProvider(this)[MealActivityViewModel::class.java]
-
-        getInfoFromIntent()
-        setInfo()
-
         binding.btnPay.setOnClickListener {
            val amt=binding.totalAmount.text.toString()
             val amount= (amt.toFloat() * 100).roundToInt().toInt()
-           
             makePayment(amount)
         }
     }
+
+    private fun getSetDetailsFromIntent() {
+        val id=intent.getStringExtra("id")
+        binding.productId.text="ID${id}"
+        val name=intent.getStringExtra("name")
+        binding.productName.text=name
+        binding.collapsingToolBar.title=name
+        val image=intent.getStringExtra("image")
+        Glide.with(this)
+            .load(image)
+            .into(binding.imgProduct)
+    }
+
 
     private fun makePayment(amount: Int) {
        val co=Checkout()
@@ -62,24 +67,6 @@ class OrderPlaceActivity : AppCompatActivity(),PaymentResultListener{
             e.printStackTrace()
         }
     }
-
-    private fun setInfo() {
-        Glide.with(this)
-            .load(image)
-            .into(binding.imgProduct)
-        binding.collapsingToolBar.title=name
-
-        binding.productName.text=name
-        binding.productId.text=id
-    }
-
-    private fun getInfoFromIntent() {
-        val intent=intent
-        id=intent.extras!!.getString("ID")!!
-        name=intent.extras!!.getString("NAME")!!
-        image=intent.extras!!.getString("IMAGE")!!
-    }
-
 
     private fun loadCase(){
         binding.lineProgressBar.visibility= View.VISIBLE
