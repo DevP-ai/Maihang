@@ -3,12 +3,6 @@
 ### Introduction
 ### Features
 ### Technologies Used
-### Architecture
-### Getting Started
-### Setup Instructions
-### Screenshots
-### Contributing
-### License
 
 # Introduction
 Welcome to `Maihang: The Food Zone`, an Android application designed to make food ordering a breeze. This app leverages the MVVM (Model-View-ViewModel) architecture pattern to provide an efficient and organized structure for developing a food ordering and delivery platform. Users can easily search for their favorite dishes, place orders, and save their preferred meals as favorites. Additionally, the app integrates the MealDB API for accessing a wide range of food recipes and Razorpay for seamless payment processing.
